@@ -1,25 +1,41 @@
-const addTaskButton = document.getElementById('add-task-btn');
-addTaskButton.addEventListener('click', function() {
-  const newTaskInput = document.getElementById('new-task');
-  const taskList = document.getElementById('task-list');
+const taskList = document.getElementById("task-list");
+const newTaskInput = document.getElementById("new-task");
+const addTaskButton = document.getElementById("add-task");
 
-  // Create a new task item and delete button
-  const newTaskItem = document.createElement('li');
-  newTaskItem.classList.add('task');
+// add new task to list
+function addTask(event) {
+  event.preventDefault();
+  const taskText = newTaskInput.value.trim();
+  if (taskText !== "") {
+    const dueDate = getDueDate();
+    const taskItem = createTaskItem(taskText, dueDate);
+    taskList.appendChild(taskItem);
+    newTaskInput.value = "";
+  }
+}
 
-  const newTaskName = document.createElement('span');
-  newTaskName.classList.add('task-name');
-  newTaskName.textContent = newTaskInput.value;
+// create new task item with text and due date
+function createTaskItem(taskText, dueDate) {
+  const taskItem = document.createElement("li");
+  taskItem.innerText = taskText;
+  if (dueDate) {
+    const dueDateSpan = document.createElement("span");
+    dueDateSpan.classList.add("due-date");
+    dueDateSpan.innerText = dueDate;
+    taskItem.appendChild(dueDateSpan);
+  }
+  const deleteTaskButton = document.createElement("span");
+  deleteTaskButton.classList.add("delete-task");
+  deleteTaskButton.innerText = "X";
+  deleteTaskButton.addEventListener("click", deleteTask);
+  taskItem.appendChild(deleteTaskButton);
+  taskItem.addEventListener("click", toggleChecked);
+  return taskItem;
+}
 
-  const deleteButton = document.createElement('button');
-  deleteButton.classList.add('delete-task', 'btn', 'btn-danger');
-  deleteButton.textContent = 'Delete';
-
-  // Add the new task item and delete button to the list
-  newTaskItem.appendChild(newTaskName);
-  newTaskItem.appendChild(deleteButton);
-  taskList.appendChild(newTaskItem);
-
-  // Clear the input field
-  newTaskInput.value = '';
-});
+// get due date from user input
+function getDueDate() {
+  const dueDateInput = prompt("Enter due date (optional):");
+  if (dueDateInput) {
+    const dueDate = new Date(dueDateInput);
+    if (!isNaN(dueDate)) {
