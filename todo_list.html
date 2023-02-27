@@ -12,47 +12,48 @@
       min-width: 350px;
     }
 
-    /* Include the padding and border in an element's total width and height */
+   
     * {
       box-sizing: border-box;
     }
 
-    /* Remove margins and padding from the list so that it appears better with the heading */
+    
     ul {
       margin: 0;
       padding: 0;
     }
 
-    /* Style the list items */
+   
     ul li {
       cursor: pointer;
-      /*makes the checkmarks go away if static and not relative*/
       position: relative;
       padding: 10px 6px 10px 30px;
       list-style-type: georgian;
       background: #FAEBD7;
       font-size: 17px;
       transition: 0.1s;
-      /* make the list items unselectable */
+      
+      
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
 
-    /* Darker background-color on hover */
+  
+    
     ul li:hover {
       background: #DEB887;
     }
 
-    /* When clicked on, add a background color and strike out text */
     ul li.checked {
       background: #DEB887;
       color: #000000;
       text-decoration: line-through;
     }
 
-    /* Add a "checked" mark when clicked on */
+   
+    
     ul li.checked::before {
       content: '🎉';
       position: absolute;
@@ -63,7 +64,7 @@
       width: 7px;
     }
 
-    /* Style the close button */
+   
     .close {
       position: absolute;
       right: 0;
@@ -76,7 +77,7 @@
       color: black;
     }
 
-    /* Style the header */
+    
     .header {
       background-color: #800000;
       padding: 20px 30px;
@@ -84,14 +85,14 @@
       text-align: left;
     }
 
-    /* Clear floats after the header */
+   
     .header:after {
       content: "";
       display: block;
       clear: both;
     }
 
-    /* Style the input */
+    
     input {
       margin: 1;
       border: solid;
@@ -102,7 +103,7 @@
       font-size: 14px;
     }
 
-    /* Style the "Add" button */
+  
     .addBtn {
       padding: 10px;
       width: 20%;
@@ -156,7 +157,8 @@ label {
        min="2023-2-26" max="2025-12-31">
 
   <script>
-    // Create a "close" button and append it to each list item
+ 
+    
     var myNodelist = document.getElementsByTagName("LI");
     var i;
     for (i = 0; i < myNodelist.length; i++) {
@@ -166,7 +168,8 @@ label {
       span.appendChild(txt);
       myNodelist[i].appendChild(span);
     }
-    // Click on a close button to hide the current list item
+   
+    
     var close = document.getElementsByClassName("close");
     var i;
     for (i = 0; i < close.length; i++) {
@@ -175,7 +178,8 @@ label {
         div.style.display = "none";
       }
     }
-    // Add a "checked" symbol when clicking on a list item
+
+    
     var list = document.querySelector('ul');
     list.addEventListener('click', function(ev) {
       if (ev.target.tagName === 'LI') {
@@ -183,7 +187,9 @@ label {
         
       }
     }, false);
-    // Create a new list item when clicking on the "Add" button
+ 
+    
+    
     function newElement() {
       var li = document.createElement("li");
       var inputValue = document.getElementById("myInput").value;
